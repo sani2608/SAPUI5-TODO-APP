@@ -1,0 +1,105 @@
+<mvc:View
+	controllerName="com.sani.todo.controller.Main"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+>
+	<Page
+		id="page"
+		title="{i18n>title}"
+	>
+		<content>
+			<Panel
+				width="auto"
+				class="sapUiResponsiveMargin"
+				accessibleRole="Region"
+			>
+				<headerToolbar>
+					<OverflowToolbar>
+						<Title text="{i18n>MainView.AddTask}"/>
+					</OverflowToolbar>
+				</headerToolbar>
+				<content>
+					<HBox
+						width="100%"
+						justifyContent="Center"
+					>
+						<Input
+							width="30rem"
+							id="id_add_input"
+							placeholder="{i18n>MainView.EnterTask}"
+							class="sapUiSmallMarginEnd"
+							value="{todosModel>/InputField}"
+						/>
+						<DatePicker
+							id="id_datePicker"
+							class="sapUiSmallMarginEnd"
+							value="{
+								path: 'todosModel>/DatePickerField'
+							}"
+						/>
+						<Button
+							type="Emphasized"
+							text="{i18n>MainView.AddTodo}"
+							press="onAddTodoButtonPress"
+							class="sapUiSmallMarginBegin"
+						/>
+					</HBox>
+				</content>
+			</Panel>
+			<!-- INCOMPLETE TODOS PANEL -->
+			<Panel
+				id="id_incomplete_panel"
+				expandable="true"
+				expanded="true"
+				headerText="{i18n>MainView.IncompletedTasks}"
+				width="auto"
+				class="sapUiResponsiveMargin"
+			>
+				<content>
+					<List
+						id="id_incompleted_todos_list"
+						items="{todosModel>/results}"
+						mode="MultiSelect"
+						selectionChange="onLIstItemSelectToComplete"
+						noDataText="{i18n>MainView.NoTodos}"
+					>
+						<CustomListItem visible="{= ${todosModel>done} !== true? true:false}">
+							<core:Fragment
+								fragmentName="com.sani.todo.view.CustomListItem"
+								type="XML"
+							/>
+						</CustomListItem>
+					</List>
+				</content>
+			</Panel>
+			<!-- COMPLETE TODOS PANEL -->
+			<Panel
+				id="id_complete_panel"
+				expandable="true"
+				expanded="true"
+				headerText="{i18n>MainView.CompletedTasks}"
+				width="auto"
+				class="sapUiResponsiveMargin"
+			>
+				<content>
+					<List
+						id="id_completed_todos_list"
+						items="{todosModel>/results}"
+						mode="MultiSelect"
+						selectionChange="onLIstItemSelectToUnComplete"
+						noDataText="{i18n>MainView.NoTodos}"
+					>
+						<CustomListItem visible="{= ${todosModel>done} === true? true:false}">
+							<core:Fragment
+								fragmentName="com.sani.todo.view.CustomListItem"
+								type="XML"
+							/>
+						</CustomListItem>
+					</List>
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</mvc:View>
