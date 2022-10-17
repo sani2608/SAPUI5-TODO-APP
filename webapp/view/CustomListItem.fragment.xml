@@ -1,0 +1,31 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+>
+	<FlexBox
+		alignItems="Start"
+		class="sapUiDemoFlexBoxSizeAdjustmentsZeroWidthItems"
+	>
+		<Label
+			text="{todosModel>text} | Deadline {todosModel>deadline}"
+			width="100%"
+			class="sapUiSmallMarginEnd sapUiTinyMarginTop"
+		>
+			<layoutData>
+				<FlexItemData growFactor="4"/>
+			</layoutData>
+		</Label>
+		<Button
+			text="Edit"
+			type="Accept"
+			class="sapUiSmallMarginEnd"
+			press="onEditTodoButtonPress"
+		/>
+		<Button
+			text="Delete"
+			type="Reject"
+			class="sapUiSmallMarginEnd"
+			press="onDeleteTodoButtonPress"
+		/>
+	</FlexBox>
+</core:FragmentDefinition>

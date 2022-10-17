@@ -1,0 +1,10 @@
+<mvc:View
+	controllerName="com.sani.todo.controller.App"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+>
+	<Shell>
+		<App id="app"/>
+	</Shell>
+</mvc:View>
